@@ -11,6 +11,14 @@ const UserSchema = new Schema(
       trim: true,
     },
     password: { type: String, required: true, select: false },
+    avatar_url: { type: String, trim: true, default: "" },
+    phone_number: { type: String, trim: true, default: "" },
+    status: {
+      type: String,
+      enum: ["active", "disabled"],
+      default: "active",
+      required: true,
+    },
     role: {
       type: String,
       enum: ["student", "instructor", "admin"],
