@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function RegisterForm() {
@@ -9,6 +10,7 @@ export default function RegisterForm() {
     const [role, setRole] = useState<"student" | "instructor">("student");
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false); 
+    const router = useRouter();
 
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -35,6 +37,10 @@ export default function RegisterForm() {
                 setName("");
                 setEmail("");
                 setPassword("");
+                
+                setTimeout(() => {
+                    router.push("/auth/login?registered=true");
+                }, 1000);
             }
         } catch {
             setMessage("An error occurred. Please try again.");
