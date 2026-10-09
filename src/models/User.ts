@@ -3,9 +3,19 @@ import mongoose, { models, Schema } from "mongoose";
 const UserSchema = new Schema(
     {
     name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, unique: true, lowercase: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
     password: { type: String, required: true, select: false },
-    role: { type: String, enum: ["student", "instructor"], default: "student" },
+    role: {
+      type: String,
+      enum: ["student", "instructor", "admin"],
+      default: "student",
+    },
     },
     { timestamps: true },
 )
