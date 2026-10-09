@@ -19,7 +19,7 @@ export const authOptions : NextAuthOptions = {
                 await connectDB();
                 const user = await User.findOne({email: data.email}).select("+password");
 
-                if (!user) {
+                if (!user || user.status === "disabled") {
                     return null;
                 }
                 
